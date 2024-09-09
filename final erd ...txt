@@ -1,0 +1,47 @@
+CREATE TABLE Patient (
+    Patient_ID INT PRIMARY KEY,
+    First_Name VARCHAR(50),
+    Last_Name VARCHAR(50),
+    DOB DATE,
+    Email VARCHAR(100)
+);
+
+CREATE TABLE Doctor (
+    Doctor_ID INT PRIMARY KEY,
+    First_Name VARCHAR(50),
+    Last_Name VARCHAR(50),
+    Email VARCHAR(100)
+);
+
+CREATE TABLE Room (
+    Room_ID INT PRIMARY KEY,
+    Room_Type VARCHAR(50),
+    Status VARCHAR(20)
+);
+
+CREATE TABLE Bill (
+    Bill_ID INT PRIMARY KEY,
+    Amount_Due DECIMAL(10, 2),
+    Status VARCHAR(20)
+);
+
+CREATE TABLE Treatment (
+    TreatMnt_ID INT PRIMARY KEY,
+    Bill_ID INT,
+    Patient_ID INT,
+    Doctor_ID INT,
+    Room_ID INT,
+    FOREIGN KEY (Bill_ID) REFERENCES Bill(Bill_ID),
+    FOREIGN KEY (Patient_ID) REFERENCES Patient(Patient_ID),
+    FOREIGN KEY (Doctor_ID) REFERENCES Doctor(Doctor_ID),
+    FOREIGN KEY (Room_ID) REFERENCES Room(Room_ID)
+);
+
+Explanation of the Tables:
+Patient: Stores information about patients including personal details.
+Doctor: Contains data regarding the doctors, including their names and contact information.
+Nurse: Manages details about nurses, mirroring the structure of the doctor table.
+Room: Keeps track of rooms available in the hospital and their current status.
+Bill: Manages the billing information related to the treatments provided.
+Treatment: Acts as the central table that records each treatment session, linking patients, doctors, rooms, and billing details.
+These SQL statements can be executed in a relational database management system to create the necessary schema for managing hospital data effectively. This setup will support various queries and operations related to hospital management and patient care.
